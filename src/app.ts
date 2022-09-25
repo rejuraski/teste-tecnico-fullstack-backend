@@ -1,19 +1,11 @@
-import express, { Request, Response } from "express";
-import { errorMiddleware } from "./middlewares/error.middleware";
-import { appRoutes } from "./routes";
+import express from "express";
+import "reflect-metadata";
+import clientRoutes from "./routes/client.routes";
+import contactRoutes from "./routes/contact.routes";
 
 const app = express();
-
 app.use(express.json());
+app.use("/client", clientRoutes);
+app.use("/contact", contactRoutes);
 
-appRoutes(app);
-
-app.get("/", (req: Request, res: Response) => {
-  res.status(200).json({
-    message: "Hello World",
-  });
-});
-
-app.use(errorMiddleware);
-
-app.listen(3000);
+export default app;
