@@ -29,7 +29,7 @@ export class Client {
   @OneToMany(() => Phone, (phone) => phone.client)
   phones: Phone[];
 
-  @ManyToMany(() => Contact)
+  @ManyToMany(() => Contact, { onDelete: "CASCADE" })
   @JoinTable()
   contacts: Contact[];
 

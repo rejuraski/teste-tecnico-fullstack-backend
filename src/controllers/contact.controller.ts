@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import createContactService from "../services/contact/createContact.service";
-// import deleteClientService from "../services/clients/deleteClient.service";
-// import listClientService from "../services/clients/listClient.service";
-// import loadClientService from "../services/clients/loadClient.service";
-// import updateClientService from "../services/clients/updateClient.service";
+import deleteContactService from "../services/contact/deleteContact.service";
+import listContactService from "../services/contact/listContact.service";
+import loadContactService from "../services/contact/loadContact.service";
+import updateContactService from "../services/contact/updateContact.service";
 
 const createContactController = async (req: Request, res: Response) => {
   try {
@@ -19,63 +19,62 @@ const createContactController = async (req: Request, res: Response) => {
   }
 };
 
-// const listClientController = async (req: Request, res: Response) => {
-//   const clients = await listClientService();
-//   return res.json(clients);
-// };
+const listContactController = async (req: Request, res: Response) => {
+  const contacts = await listContactService();
+  return res.json(contacts);
+};
 
-// const deleteClientController = async (req: Request, res: Response) => {
-//   try {
-//     const clientId = req.params.id;
-//     await deleteClientService(clientId);
-//     return res.status(200).json({
-//       message: "Cliente deletado com sucesso",
-//     });
-//   } catch (error) {
-//     if (error instanceof Error) {
-//       return res.status(400).json({
-//         message: error.message,
-//       });
-//     }
-//   }
-// };
+const deleteContactController = async (req: Request, res: Response) => {
+  try {
+    const clientId = req.params.id;
+    await deleteContactService(clientId);
+    return res.status(200).json({
+      message: "Contato deletado com sucesso",
+    });
+  } catch (error) {
+    if (error instanceof Error) {
+      return res.status(400).json({
+        message: error.message,
+      });
+    }
+  }
+};
 
-// const loadClientController = async (req: Request, res: Response) => {
-//   try {
-//     console.log(req);
-//     const clientId = req.params.id;
-//     const client = await loadClientService(clientId);
-//     return res.json(client);
-//   } catch (error) {
-//     if (error instanceof Error) {
-//       return res.status(400).json({
-//         message: error.message,
-//       });
-//     }
-//   }
-// };
+const loadContactController = async (req: Request, res: Response) => {
+  try {
+    const contactId = req.params.id;
+    const contact = await loadContactService(contactId);
+    return res.json(contact);
+  } catch (error) {
+    if (error instanceof Error) {
+      return res.status(400).json({
+        message: error.message,
+      });
+    }
+  }
+};
 
-// const updateClientController = async (req: Request, res: Response) => {
-//   try {
-//     const clientId = req.params.id;
-//     const { name } = req.body;
-//     const user = await updateClientService(clientId, {
-//       name,
-//     });
-//     return res.status(200).json(user);
-//   } catch (error) {
-//     if (error instanceof Error) {
-//       return res.status(400).json({
-//         message: error.message,
-//       });
-//     }
-//   }
-// };
+const updateContactController = async (req: Request, res: Response) => {
+  try {
+    const contactId = req.params.id;
+    const { name } = req.body;
+    const user = await updateContactService(contactId, {
+      name,
+    });
+    return res.status(200).json(user);
+  } catch (error) {
+    if (error instanceof Error) {
+      return res.status(400).json({
+        message: error.message,
+      });
+    }
+  }
+};
 
 export {
   createContactController,
-  // listClientController,
-  // deleteClientController,
-  // loadClientController,
-  // updateClientController,
+  listContactController,
+  deleteContactController,
+  loadContactController,
+  updateContactController,
 };
