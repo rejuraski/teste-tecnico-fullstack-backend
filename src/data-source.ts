@@ -2,7 +2,7 @@ import { DataSource } from "typeorm";
 require("dotenv").config();
 
 export const AppDataSource =
-  process.env.NODE_ENV === "test"
+  process.env.NODE_ENV === "production"
     ? new DataSource({
         type: "sqlite",
         database: ":memory:",
