@@ -6,6 +6,7 @@
   "author": "Renata <re_juraski@hotmail.com>",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
     "start": "node dist/src/server.js",
     "dev": "ts-node-dev src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs"
